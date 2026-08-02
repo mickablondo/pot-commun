@@ -1,0 +1,37 @@
+.carte {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f2f4;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+.nom {
+  font-weight: 600;
+}
+
+.date {
+  color: #9aa5b1;
+  font-size: 0.85rem;
+}
+
+.vide {
+  color: #9aa5b1;
+  font-style: italic;
+}

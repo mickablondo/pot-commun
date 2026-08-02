@@ -1,0 +1,60 @@
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+
+header .sous-titre {
+  color: #616e7c;
+  margin: 0 0 24px 0;
+  font-size: 0.95rem;
+}
+
+.grille {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.carte {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.ligne {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+label {
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+  color: #616e7c;
+}
+
+input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #d9dde3;
+  font-size: 0.95rem;
+}
+
+button[type='submit'] {
+  background: #2f80ed;
+  color: white;
+}
+
+@media (max-width: 700px) {
+  .grille {
+    grid-template-columns: 1fr;
+  }
+}

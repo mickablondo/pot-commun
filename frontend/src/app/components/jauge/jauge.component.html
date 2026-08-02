@@ -1,0 +1,39 @@
+<div class="jauge-container">
+  <h2>Ma jauge d'épargne</h2>
+  <p class="solde" [class.negatif]="solde < 0">
+    Solde actuel : <strong>{{ solde | number: "1.2-2" }} EUR</strong>
+  </p>
+
+  <div class="regle">
+    <div
+      class="curseur-solde"
+      [style.left.%]="positionSolde()"
+      title="Solde actuel"
+    ></div>
+
+    <div
+      class="repere"
+      *ngFor="let objectif of objectifsDisponibles"
+      [style.left.%]="positionRepere(objectif)"
+    >
+      <div class="repere-trait"></div>
+      <div class="repere-label">
+        <span class="nom">{{ objectif.nom }}</span>
+        <span class="prix">{{ objectif.prix | number: "1.0-2" }} EUR</span>
+        <span class="pourcentage"
+          >{{ objectif.pourcentageAtteint | number: "1.0-0" }}%</span
+        >
+        <button
+          *ngIf="objectif.pourcentageAtteint >= 100"
+          (click)="recuperer(objectif)"
+        >
+          Récupérer
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <p *ngIf="objectifsDisponibles.length === 0" class="vide">
+    Aucun objectif disponible pour le moment. Ajoutes-en un !
+  </p>
+</div>

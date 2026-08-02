@@ -1,0 +1,28 @@
+<div class="carte">
+  <h3>Ajouter un gain</h3>
+  <form [formGroup]="formulaire" (ngSubmit)="soumettre()">
+    <div class="ligne">
+      <label for="source">Source</label>
+      <select id="source" formControlName="source">
+        <option *ngFor="let s of sources" [value]="s">{{ s }}</option>
+      </select>
+    </div>
+
+    <div class="ligne">
+      <label for="montant">Montant (EUR)</label>
+      <input id="montant" type="number" step="0.01" formControlName="montant" />
+    </div>
+
+    <div class="ligne">
+      <label for="date">Date</label>
+      <input id="date" type="date" formControlName="date" />
+    </div>
+
+    <div class="ligne">
+      <label for="description">Description (optionnel)</label>
+      <input id="description" type="text" formControlName="description" />
+    </div>
+
+    <button type="submit">Ajouter</button>
+  </form>
+</div>

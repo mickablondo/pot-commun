@@ -1,0 +1,105 @@
+.jauge-container {
+  background: white;
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.solde {
+  font-size: 1.2rem;
+}
+
+.solde.negatif strong {
+  color: #d64545;
+}
+
+.regle {
+  position: relative;
+  height: 6px;
+  background: #e4e7eb;
+  border-radius: 3px;
+  margin: 80px 0 100px 0;
+}
+
+.curseur-solde {
+  position: absolute;
+  top: -6px;
+  width: 18px;
+  height: 18px;
+  background: #2f80ed;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  border: 3px solid white;
+  box-shadow: 0 0 0 1px #2f80ed;
+  z-index: 2;
+}
+
+.repere {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  width: 260px;
+  min-width: 260px;
+  max-width: 260px;
+}
+
+.repere-trait {
+  width: 2px;
+  height: 14px;
+  background: #9aa5b1;
+  margin: -4px auto 0 auto;
+}
+
+.repere-label {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  white-space: normal;
+  width: 100%;
+  max-width: 260px;
+  text-align: center;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.repere-label span {
+  display: block;
+  width: 100%;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.repere-label button {
+  margin-top: 4px;
+  background: #27ae60;
+  color: white;
+}
+
+.repere-label .nom {
+  font-weight: 600;
+}
+
+.repere-label .prix {
+  color: #616e7c;
+}
+
+.repere-label .pourcentage {
+  color: #2f80ed;
+  font-weight: 600;
+}
+
+.repere-label button {
+  margin-top: 4px;
+  background: #27ae60;
+  color: white;
+}
+
+.vide {
+  color: #9aa5b1;
+  font-style: italic;
+}

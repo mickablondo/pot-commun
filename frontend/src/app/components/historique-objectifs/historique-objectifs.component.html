@@ -1,0 +1,15 @@
+<div class="carte">
+  <h3>Objectifs réalisés</h3>
+  <ng-container *ngIf="objectifsRecuperes$ | async as objectifsRecuperes">
+    <ul *ngIf="objectifsRecuperes.length > 0; else vide">
+      <li *ngFor="let o of objectifsRecuperes">
+        <span class="nom">{{ o.nom }}</span>
+        <span class="prix">{{ o.prix | number: "1.0-2" }} EUR</span>
+        <span class="date">{{ o.dateRecuperation | dateFr }}</span>
+      </li>
+    </ul>
+  </ng-container>
+  <ng-template #vide>
+    <p class="vide">Aucun objectif réalisé pour le moment.</p>
+  </ng-template>
+</div>
