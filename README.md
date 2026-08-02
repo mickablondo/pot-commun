@@ -42,12 +42,4 @@ npm install
 npm start
 ```
 
-L'appli est servie sur `http://localhost:4200` et appelle le backend sur `http://localhost:8080`.
-
-## Prochaines etapes possibles
-
-- Suppression/edition d'un objectif ou d'un gain
-- Graphique de repartition des gains par source (ngx-charts ou Chart.js)
-- Authentification si tu veux rendre l'appli multi-utilisateur
-- Remplacer les `location.reload()` (solution rapide de depart) par un vrai partage d'etat
-  reactif entre composants via les services (`SoldeService` est deja pret pour ca)
+L'application est disponible sur `http://localhost:4200` et appelle le backend sur `http://localhost:8080`.
