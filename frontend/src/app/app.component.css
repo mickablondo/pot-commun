@@ -1,5 +1,5 @@
 .page {
-  max-width: 900px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 32px 20px;
 }
@@ -48,7 +48,7 @@ input {
   font-size: 0.95rem;
 }
 
-button[type='submit'] {
+button[type="submit"] {
   background: #2f80ed;
   color: white;
 }
