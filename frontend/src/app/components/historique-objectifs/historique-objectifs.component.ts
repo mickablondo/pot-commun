@@ -4,11 +4,12 @@ import { BehaviorSubject, Subject, takeUntil } from "rxjs";
 import { ObjectifService } from "../../services/objectif.service";
 import { ObjectifProgression } from "../../models/objectif.model";
 import { DateFrPipe } from "../../pipes/date-fr.pipe";
+import { EuroFrPipe } from "../../pipes/euro-fr.pipe";
 
 @Component({
   selector: "app-historique-objectifs",
   standalone: true,
-  imports: [CommonModule, DateFrPipe],
+  imports: [CommonModule, DateFrPipe, EuroFrPipe],
   templateUrl: "./historique-objectifs.component.html",
   styleUrls: ["./historique-objectifs.component.css"],
 })
