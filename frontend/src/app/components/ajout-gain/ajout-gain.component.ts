@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject } from "@angular/core";
+import { Component, EventEmitter, Output, inject, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { GainService } from "../../services/gain.service";
@@ -8,6 +8,7 @@ import { GainService } from "../../services/gain.service";
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: "./ajout-gain.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./ajout-gain.component.css"],
 })
 export class AjoutGainComponent {

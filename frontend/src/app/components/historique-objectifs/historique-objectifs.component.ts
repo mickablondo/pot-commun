@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { BehaviorSubject, Subject, takeUntil } from "rxjs";
 import { ObjectifService } from "../../services/objectif.service";
@@ -11,6 +11,7 @@ import { EuroFrPipe } from "../../pipes/euro-fr.pipe";
   standalone: true,
   imports: [CommonModule, DateFrPipe, EuroFrPipe],
   templateUrl: "./historique-objectifs.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./historique-objectifs.component.css"],
 })
 export class HistoriqueObjectifsComponent implements OnInit, OnDestroy {

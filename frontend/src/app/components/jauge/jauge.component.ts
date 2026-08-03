@@ -9,18 +9,20 @@ import {
   Output,
   SimpleChanges,
   inject,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { combineLatest } from "rxjs";
 import { SoldeService } from "../../services/solde.service";
 import { ObjectifService } from "../../services/objectif.service";
 import { ObjectifProgression } from "../../models/objectif.model";
+import { EuroFrPipe } from "../../pipes/euro-fr.pipe";
 
 @Component({
   selector: "app-jauge",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, EuroFrPipe],
   templateUrl: "./jauge.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./jauge.component.css"],
 })
 export class JaugeComponent implements OnInit, OnChanges {

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { Gain } from "../../models/gain.model";
 import { BehaviorSubject, Subject } from "rxjs";
 import { GainService } from "../../services/gain.service";
@@ -10,6 +10,7 @@ import { EuroFrPipe } from "../../pipes/euro-fr.pipe";
   selector: "app-historique-gains",
   imports: [CommonModule, DateFrPipe, EuroFrPipe],
   templateUrl: "./historique-gains.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: "./historique-gains.component.css",
 })
 export class HistoriqueGainsComponent implements OnInit, OnDestroy {

@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild } from "@angular/core";
+import { Component, inject, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { JaugeComponent } from "./components/jauge/jauge.component";
@@ -19,6 +19,7 @@ import { HistoriqueGainsComponent } from "./components/historique-gains/historiq
     HistoriqueGainsComponent,
   ],
   templateUrl: "./app.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent {

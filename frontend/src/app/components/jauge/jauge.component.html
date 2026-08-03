@@ -1,7 +1,7 @@
 <div class="jauge-container">
   <h2>Ma jauge d'épargne</h2>
   <p class="solde" [class.negatif]="solde < 0">
-    Solde actuel : <strong>{{ solde | number: "1.2-2" }} EUR</strong>
+    Solde actuel : <strong>{{ solde | euroFr }}</strong>
   </p>
 
   <div class="regle">
@@ -19,7 +19,7 @@
       <div class="repere-trait"></div>
       <div class="repere-label">
         <span class="nom">{{ objectif.nom }}</span>
-        <span class="prix">{{ objectif.prix | number: "1.0-2" }} EUR</span>
+        <span class="prix">{{ objectif.prix | euroFr }}</span>
         <span class="pourcentage"
           >{{ objectif.pourcentageAtteint | number: "1.0-0" }}%</span
         >
