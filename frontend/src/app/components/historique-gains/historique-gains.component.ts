@@ -4,10 +4,11 @@ import { BehaviorSubject, Subject } from "rxjs";
 import { GainService } from "../../services/gain.service";
 import { CommonModule } from "@angular/common";
 import { DateFrPipe } from "../../pipes/date-fr.pipe";
+import { EuroFrPipe } from "../../pipes/euro-fr.pipe";
 
 @Component({
   selector: "app-historique-gains",
-  imports: [CommonModule, DateFrPipe],
+  imports: [CommonModule, DateFrPipe, EuroFrPipe],
   templateUrl: "./historique-gains.component.html",
   styleUrl: "./historique-gains.component.css",
 })
