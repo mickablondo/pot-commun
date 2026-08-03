@@ -1,4 +1,9 @@
-import { Component, inject, ViewChild, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  inject,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { JaugeComponent } from "./components/jauge/jauge.component";
@@ -26,6 +31,9 @@ export class AppComponent {
   @ViewChild(HistoriqueObjectifsComponent)
   historiqueObjectifs?: HistoriqueObjectifsComponent;
 
+  @ViewChild(HistoriqueGainsComponent)
+  historiqueGains?: HistoriqueGainsComponent;
+
   private fb = inject(FormBuilder);
   private objectifService = inject(ObjectifService);
 
@@ -39,8 +47,9 @@ export class AppComponent {
 
   surAjoutGain(): void {
     this.compteurRafraichissement++;
-    // Recharge egalement la jauge en rechargeant la page de composant (approche simple)
-    location.reload();
+    // Rafraîchissement ciblé : demande au composant d'historique des gains
+    // de recharger sa liste et incrémente le compteur pour la jauge.
+    this.historiqueGains?.charger();
   }
 
   surRecuperationObjectif(): void {
