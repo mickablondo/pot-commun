@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Gain } from '../models/gain.model';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { Gain } from "../models/gain.model";
 
-const API_URL = 'http://localhost:8080/api/gains';
+const API_URL = "http://localhost:8080/api/gains";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class GainService {
   constructor(private http: HttpClient) {}
 

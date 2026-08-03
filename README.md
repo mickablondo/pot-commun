@@ -44,4 +44,4 @@ npm start
 
 L'application est disponible sur `http://localhost:4200` et appelle le backend sur `http://localhost:8080`.
 
-![Visu](image.png)
+![Visu](image-1.png)

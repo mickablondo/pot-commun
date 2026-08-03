@@ -5,6 +5,7 @@ import { JaugeComponent } from "./components/jauge/jauge.component";
 import { AjoutGainComponent } from "./components/ajout-gain/ajout-gain.component";
 import { HistoriqueObjectifsComponent } from "./components/historique-objectifs/historique-objectifs.component";
 import { ObjectifService } from "./services/objectif.service";
+import { HistoriqueGainsComponent } from "./components/historique-gains/historique-gains.component";
 
 @Component({
   selector: "app-root",
@@ -15,6 +16,7 @@ import { ObjectifService } from "./services/objectif.service";
     JaugeComponent,
     AjoutGainComponent,
     HistoriqueObjectifsComponent,
+    HistoriqueGainsComponent,
   ],
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
