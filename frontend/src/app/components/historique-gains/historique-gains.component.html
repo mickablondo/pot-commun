@@ -1,0 +1,16 @@
+<div class="carte">
+  <h3>Historique des gains</h3>
+  <ng-container *ngIf="gainsRecuperes$ | async as gainsRecuperes">
+    <ul *ngIf="gainsRecuperes.length > 0; else vide">
+      <li *ngFor="let g of gainsRecuperes" class="gain-row">
+        <span class="source">{{ g.source }}</span>
+        <span class="montant">{{ g.montant | number: "1.0-2" }} EUR</span>
+        <span class="date">{{ g.date | dateFr }}</span>
+        <span class="description">{{ g.description }}</span>
+      </li>
+    </ul>
+  </ng-container>
+  <ng-template #vide>
+    <p class="vide">Aucun gain enregistré pour le moment.</p>
+  </ng-template>
+</div>

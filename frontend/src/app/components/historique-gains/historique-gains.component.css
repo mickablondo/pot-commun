@@ -1,0 +1,55 @@
+.carte {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-top: 24px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.gain-row {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 1fr 2fr;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f2f4;
+}
+
+.gain-row:last-child {
+  border-bottom: none;
+}
+
+.source,
+.montant,
+.date,
+.description {
+  min-width: 0;
+}
+
+.source {
+  font-weight: 600;
+}
+
+.montant {
+  font-weight: 600;
+}
+
+.date {
+  color: #9aa5b1;
+  font-size: 0.85rem;
+}
+
+.description {
+  color: #475569;
+}
+
+.vide {
+  color: #9aa5b1;
+  font-style: italic;
+}
