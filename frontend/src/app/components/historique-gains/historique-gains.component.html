@@ -1,5 +1,5 @@
 <div class="carte">
-  <h3>Historique des gains</h3>
+  <h3>Journal des entrées</h3>
   <ng-container *ngIf="gainsRecuperes$ | async as gainsRecuperes">
     <ul *ngIf="gainsRecuperes.length > 0; else vide">
       <li *ngFor="let g of gainsRecuperes" class="gain-row">

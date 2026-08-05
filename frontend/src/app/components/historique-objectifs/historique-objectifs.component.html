@@ -1,5 +1,5 @@
 <div class="carte">
-  <h3>Objectifs réalisés</h3>
+  <h3>Objectifs accomplis</h3>
   <ng-container *ngIf="objectifsRecuperes$ | async as objectifsRecuperes">
     <ul *ngIf="objectifsRecuperes.length > 0; else vide">
       <li *ngFor="let o of objectifsRecuperes">

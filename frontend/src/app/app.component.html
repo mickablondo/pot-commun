@@ -1,9 +1,13 @@
 <div class="page">
-  <header>
-    <h1>Pot Commun</h1>
-    <p class="sous-titre">
-      La jauge participative pour atteindre vos objectifs à plusieurs
-    </p>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Pot Commun</h1>
+      <div class="hero-accent"></div>
+      <p class="hero-subtitle">
+        Suivez la cagnotte, atteignez les objectifs et partagez la réussite avec
+        un tableau de bord clair et élégant.
+      </p>
+    </div>
   </header>
 
   <app-jauge
@@ -15,7 +19,7 @@
     <app-ajout-gain (gainAjoute)="surAjoutGain()"></app-ajout-gain>
 
     <div class="carte">
-      <h3>Ajouter un objectif</h3>
+      <h3>Créer un objectif</h3>
       <form [formGroup]="formulaireObjectif" (ngSubmit)="ajouterObjectif()">
         <div class="ligne">
           <label for="nom">Nom</label>
