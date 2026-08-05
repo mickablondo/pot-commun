@@ -1,5 +1,10 @@
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from "@angular/core";
-import { Gain } from "../../models/gain.model";
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  ChangeDetectionStrategy,
+} from "@angular/core";
+import { Gain, SourceGain, getSourceGainLabel } from "../../models/gain.model";
 import { BehaviorSubject, Subject } from "rxjs";
 import { GainService } from "../../services/gain.service";
 import { CommonModule } from "@angular/common";
@@ -37,5 +42,9 @@ export class HistoriqueGainsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  sourceLabel(source: SourceGain): string {
+    return getSourceGainLabel(source);
   }
 }

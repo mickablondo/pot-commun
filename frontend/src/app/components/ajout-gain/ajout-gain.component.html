@@ -4,7 +4,9 @@
     <div class="ligne">
       <label for="source">Source</label>
       <select id="source" formControlName="source">
-        <option *ngFor="let s of sources" [value]="s">{{ s }}</option>
+        <option *ngFor="let option of sourceOptions" [value]="option.value">
+          {{ option.label }}
+        </option>
       </select>
     </div>
 

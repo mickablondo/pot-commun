@@ -3,7 +3,7 @@
   <ng-container *ngIf="gainsRecuperes$ | async as gainsRecuperes">
     <ul *ngIf="gainsRecuperes.length > 0; else vide">
       <li *ngFor="let g of gainsRecuperes" class="gain-row">
-        <span class="source">{{ g.source }}</span>
+        <span class="source">{{ sourceLabel(g.source) }}</span>
         <span class="montant">{{ g.montant | euroFr }}</span>
         <span class="date">{{ g.date | dateFr }}</span>
         <span class="description">{{ g.description }}</span>
