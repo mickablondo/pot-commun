@@ -1,5 +1,14 @@
 <div class="jauge-container">
-  <h2>Ma jauge d'épargne</h2>
+  <div class="jauge-entete">
+    <h2>Ma jauge d'épargne</h2>
+    <button class="btn-graphique" type="button" (click)="ouvrirModal()">
+      <span class="graph-icon" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+      <span>Répartition</span>
+    </button>
+  </div>
+
   <p class="solde" [class.negatif]="solde < 0">
     Solde actuel : <strong>{{ solde | euroFr }}</strong>
   </p>
@@ -36,4 +45,26 @@
   <p *ngIf="objectifsDisponibles.length === 0" class="vide">
     Aucun objectif disponible pour le moment. Ajoutes-en un !
   </p>
+
+  <div class="modal-backdrop" *ngIf="modalOuvert" (click)="fermerModal()"></div>
+  <div class="modal" *ngIf="modalOuvert">
+    <div class="modal-header">
+      <h3>Répartition des gains par source</h3>
+      <button class="close-button" (click)="fermerModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <ng-container *ngIf="hasDistributionData(); else emptyDistribution">
+        <canvas
+          #chartCanvas
+          aria-label="Graphique de répartition des gains"
+          role="img"
+        ></canvas>
+      </ng-container>
+      <ng-template #emptyDistribution>
+        <div class="empty-chart-message">
+          Aucun gain enregistré pour afficher la répartition.
+        </div>
+      </ng-template>
+    </div>
+  </div>
 </div>

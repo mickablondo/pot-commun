@@ -20,8 +20,19 @@ export const SOURCE_GAIN_OPTIONS: Array<{ value: SourceGain; label: string }> =
     label: SOURCE_GAIN_LABELS[source],
   }));
 
+export const SOURCE_GAIN_COLORS: Record<SourceGain, string> = {
+  [SourceGain.VIDE_GRENIER]: "#2f80ed",
+  [SourceGain.VINTED]: "#27ae60",
+  [SourceGain.CADEAU]: "#f2994a",
+  [SourceGain.REMBOURSEMENT]: "#eb5757",
+  [SourceGain.AUTRE]: "#9b51e0",
+};
+
 export const getSourceGainLabel = (source: SourceGain): string =>
   SOURCE_GAIN_LABELS[source] ?? source;
+
+export const getSourceGainColor = (source: SourceGain): string =>
+  SOURCE_GAIN_COLORS[source] ?? "#8899aa";
 
 export interface Gain {
   id?: number;
