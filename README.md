@@ -47,3 +47,64 @@ L'application est disponible sur `http://localhost:4200` et appelle le backend s
 ![Visu](image.png)
 
 ![graphique](repartition.png)
+
+## Sécurité
+
+La sécurité du backend est basée sur des tokens JWT, configurables via des variables d'environnement.
+
+### Vue d'ensemble
+
+- Authentification stateless par JWT (JSON Web Token) ;
+- Endpoints publics :
+  - POST /api/auth/login : permet l'obtention d'un JWT ;
+  - /h2-console/\*\* : console H2 (développement) ;
+- Tous les autres endpoints requièrent un JWT valide transmis dans l'en‑tête Authorization: Bearer <JWT> ;
+- Profil `dev` : si SPRING_PROFILES_ACTIVE=dev, la sécurité est désactivée pour faciliter le développement local ;
+
+### Configuration
+
+Les paramètres sensibles se mettent dans un fichier .env à la racine du backend (ex : backend/.env) ou via les variables d'environnement du système. Ne commitez pas ce fichier !!
+
+Exemple de fichier .env :
+
+```properties
+# DB
+DB_URL=jdbc:h2:file:./data/potcommun;AUTO_SERVER=TRUE
+DB_USERNAME=sa
+DB_PASSWORD=
+SERVER_PORT=8080
+
+# Compte autorisé par défaut
+INIT_USER_EMAIL=micka@example.com
+INIT_USER_PASSWORD=changeMoi
+INIT_USER_NAME=Micka
+
+# JWT
+JWT_SECRET=un_secret_pas_complique_oups
+JWT_EXPIRATION_MS=3600000
+```
+
+<i>À noter :</i>
+
+- JWT_SECRET est le secret utilisé pour signer les tokens (doit être long et secret, ex : 32+ caract.) ;
+- JWT_EXPIRATION_MS est la durée de validité du token en millisecondes (par défaut 3600000 = 1h) ;
+
+### Mécanique d'authentification
+
+- POST /api/auth/login
+  - Requête JSON : { "email": "user@example.com", "password": "votreMotDePasse" }
+  - Réponse : { "token": "<JWT>", "nom": "Prénom" }
+  - Le token est signé avec JWT_SECRET et expire après JWT_EXPIRATION_MS.
+
+- Les mots de passe sont stockés hachés (BCrypt). InitUsersConfig initialise un utilisateur si la table est vide.
+
+### Appels depuis un client (ex : Postman, frontend Angular)
+
+1. Obtenir le token :
+   POST http://localhost:8080/api/auth/login
+   Header: Content-Type: application/json
+   Body: { "email":"micka@example.com", "password":"changeMoi" }
+   -> réponse JSON contenant "token"
+
+2. Appeler un endpoint protégé en spécifiant le token dans l'en-tête Authorization :
+   Header: Authorization: Bearer <JWT>

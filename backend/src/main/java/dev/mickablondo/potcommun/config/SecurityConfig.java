@@ -1,46 +1,56 @@
 package dev.mickablondo.potcommun.config;
 
+import dev.mickablondo.potcommun.security.JwtAuthenticationFilter;
+import dev.mickablondo.potcommun.service.CustomUserDetailsService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
+import org.springframework.core.env.Environment;
+import org.springframework.core.env.Profiles;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-/**
- * Classe de configuration pour la sécurité de l'application.
- * Configure les règles de sécurité, y compris la désactivation de CSRF pour la console H2 et la configuration des en-têtes HTTP.
- *
- * @author micka blondo
- */
 @Configuration
+@RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final dev.mickablondo.potcommun.service.CustomUserDetailsService customUserDetailsService;
-    private final org.springframework.security.crypto.password.PasswordEncoder passwordEncoder;
-
-    public SecurityConfig(dev.mickablondo.potcommun.service.CustomUserDetailsService customUserDetailsService, org.springframework.security.crypto.password.PasswordEncoder passwordEncoder) {
-        this.customUserDetailsService = customUserDetailsService;
-        this.passwordEncoder = passwordEncoder;
-    }
+    private final CustomUserDetailsService customUserDetailsService;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final Environment environment;
 
     @Bean
-    public org.springframework.security.authentication.AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
-        org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder auth = http.getSharedObject(org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder.class);
+    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+        AuthenticationManagerBuilder auth = http.getSharedObject(AuthenticationManagerBuilder.class);
         auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder);
         return auth.build();
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        // Profil DEV : désactivation de la sécurité
+        if (environment.acceptsProfiles(Profiles.of("dev"))) {
+            http.csrf(AbstractHttpConfigurer::disable)
+                    .authorizeHttpRequests(a -> a.anyRequest().permitAll());
+            http.headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
+            return http.build();
+        }
+
         http.authenticationManager(authenticationManager(http))
                 .csrf(AbstractHttpConfigurer::disable)
+                .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                        .formLogin(Customizer.withDefaults());
+                .addFilterBefore(jwtAuthenticationFilter, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class);
 
         http.headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
 
