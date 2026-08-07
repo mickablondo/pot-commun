@@ -1,0 +1,37 @@
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+.login-form {
+  width: 320px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+}
+.login-form h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+.login-form label {
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+.login-form input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+.login-form .error {
+  color: #b00020;
+  margin-top: 8px;
+}
+.login-form button {
+  margin-top: 12px;
+  width: 100%;
+  padding: 8px;
+}
