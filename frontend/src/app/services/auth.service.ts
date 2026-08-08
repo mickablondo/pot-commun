@@ -11,6 +11,8 @@ interface LoginResponse {
   nom?: string;
 }
 
+const API_URL = "http://localhost:8080/api/auth";
+
 /**
  * Service d'authentification pour gérer la connexion, la déconnexion et la gestion du token JWT.
  */
@@ -23,9 +25,9 @@ export class AuthService {
     private router: Router,
   ) {}
 
-  login(email: string, motDePasse: string): Observable<LoginResponse> {
+  login(email: string, password: string): Observable<LoginResponse> {
     return this.http
-      .post<LoginResponse>("/api/auth/login", { email, motDePasse })
+      .post<LoginResponse>(`${API_URL}/login`, { email, password })
       .pipe(
         tap((res) => {
           if (res && res.token) {

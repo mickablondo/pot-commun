@@ -20,7 +20,9 @@ const routes = [
   {
     path: "",
     loadComponent: () =>
-      import("./app/app.component").then((m) => m.AppComponent),
+      import("./app/components/dashboard/dashboard.component").then(
+        (m) => m.DashboardComponent,
+      ),
     canActivate: [AuthGuard],
   },
 ];
