@@ -1,10 +1,13 @@
 import { bootstrapApplication } from "@angular/platform-browser";
-import { provideHttpClient, withXhr } from "@angular/common/http";
+import {
+  provideHttpClient,
+  withInterceptors,
+  withXhr,
+} from "@angular/common/http";
 import { AppComponent } from "./app/app.component";
 import { provideRouter } from "@angular/router";
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { AuthInterceptor } from "./app/interceptors/auth.interceptor";
 import { AuthGuard } from "./app/guards/auth.guard";
+import { authInterceptor } from "./app/interceptors/auth.interceptor";
 
 /**
  * Configuration des routes de l'application.
@@ -32,8 +35,7 @@ const routes = [
  */
 bootstrapApplication(AppComponent, {
   providers: [
-    provideHttpClient(withXhr()),
+    provideHttpClient(withXhr(), withInterceptors([authInterceptor])),
     provideRouter(routes),
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
 }).catch((err) => console.error(err));
