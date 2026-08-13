@@ -1,7 +1,6 @@
 # Pot Commun
 
 Application de suivi d'epargne qui permet d'enregistrer des petits gains (vide-grenier, Vinted, cadeaux ...) et de voir sur une jauge unique à quel point on est proche (ou pas) de nos objectifs (PS5, Thermomix...).  
-Récupérer un objectif déduit son prix du solde total évidemment (attention, le solde peut devenir négatif si vous n'arrivez pas à attendre d'atteindre un palier ! Hihi).
 
 ## Architecture
 
