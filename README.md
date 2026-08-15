@@ -6,13 +6,13 @@ Application de suivi d'epargne qui permet d'enregistrer des petits gains (vide-g
 
 ```
 potcommun/
-├── backend/     Spring Boot (Java 25) + H2 en mode fichier
+├── backend/     Spring Boot 4.1.0 (Java 25) + H2 en mode fichier
 └── frontend/    Angular 21 (standalone components)
 ```
 
 ## Lancer le backend
 
-Prérequis : Java 25, Spring Boot 4.1.0 et Maven.
+Prérequis : Java 25 et Maven.
 
 ```bash
 cd backend
