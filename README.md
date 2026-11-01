@@ -1,18 +1,18 @@
 # Pot Commun
 
-Application de suivi d'epargne qui permet d'enregistrer des petits gains (vide-grenier, Vinted, cadeaux ...) et de voir sur une jauge unique à quel point on est proche (ou pas) de nos objectifs (PS5, Thermomix...).  
+Application de suivi d'epargne qui permet d'enregistrer des petits gains (vide-grenier, Vinted, cadeaux ...) et de voir sur une jauge unique à quel point on est proche (ou pas) de nos objectifs (PS5, Thermomix...).
 
 ## Architecture
 
 ```
 potcommun/
-├── backend/     Spring Boot 4.1.0 (Java 25) + H2 en mode fichier
-└── frontend/    Angular 21 (standalone components)
+├── backend/     Spring Boot 4.1.2 (Java 27) + H2 en mode fichier
+└── frontend/    Angular 22 (standalone components)
 ```
 
 ## Lancer le backend
 
-Prérequis : Java 25 et Maven.
+Prérequis : Java 27 et Maven.
 
 ```bash
 cd backend
@@ -33,7 +33,7 @@ Console H2 disponible sur `http://localhost:8080/h2-console` (JDBC URL : `jdbc:h
 
 ## Lancer le frontend
 
-Prerequis : Node.js 21 et npm.
+Prerequis : Node.js 24 et npm 12.
 
 ```bash
 cd frontend
@@ -46,6 +46,35 @@ L'application est disponible sur `http://localhost:4200` et appelle le backend s
 ![Visu](image.png)
 
 ![graphique](repartition.png)
+
+### Architecture des composants
+
+```mermaid
+flowchart TD
+    Main{{"main.ts<br/>bootstrap + routes + providers"}}
+    Root(["AppComponent<br/>router-outlet"])
+    Guard[["AuthGuard"]]
+    Login(["LoginComponent"])
+    Dashboard(["DashboardComponent<br/>route /"])
+    Jauge(["JaugeComponent"])
+    Ajout(["AjoutGainComponent"])
+    Objectifs(["HistoriqueObjectifsComponent"])
+    Gains(["HistoriqueGainsComponent"])
+    ObjectifForm["Formulaire de création<br/>dans le Dashboard"]
+
+    Main --> Root
+    Root -->|/login| Login
+    Root -->|/ — accès protégé| Guard --> Dashboard
+    Login .-> Guard
+    Dashboard --> Jauge
+    Dashboard --> Ajout
+    Dashboard --> ObjectifForm
+    Dashboard --> Objectifs
+    Dashboard --> Gains
+
+    Ajout -. "gainAjoute : rafraîchit" .-> Dashboard
+    Jauge -. "objectifRecupere : rafraîchit" .-> Dashboard
+```
 
 ## Sécurité
 
@@ -99,10 +128,10 @@ JWT_EXPIRATION_MS=3600000
 
 ### Appels depuis un client (ex : Postman, frontend Angular)
 
-1. Obtenir le token :
-   POST http://localhost:8080/api/auth/login
-   Header: Content-Type: application/json
-   Body: { "email":"micka@example.com", "password":"changeMoi" }
+1. Obtenir le token :  
+   POST http://localhost:8080/api/auth/login  
+   Header: Content-Type: application/json  
+   Body: { "email":"micka@example.com", "password":"changeMoi" }  
    -> réponse JSON contenant "token"
 
 2. Appeler un endpoint protégé en spécifiant le token dans l'en-tête Authorization :
